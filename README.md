@@ -1,34 +1,78 @@
-# Secure Scaffold
+# Flask GAE Starter - Secure Scaffold
+
+[![Tests](https://github.com/GoogleCloudPlatform/flask-gae-starter/actions/workflows/tests.yml/badge.svg)](https://github.com/GoogleCloudPlatform/flask-gae-starter/actions/workflows/tests.yml)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Flask 2.0+](https://img.shields.io/badge/flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+
+## 🚀 Quick Start - Using This Template
+
+**Click the "Use this template" button above to create your own repository from this template!**
+
+Then follow the detailed setup guide: **[TEMPLATE_SETUP.md](TEMPLATE_SETUP.md)**
 
 ## Introduction
 
-This is not an officially supported Google product.
+> **Note:** This is not an officially supported Google product.
 
-Secure Scaffold helps you build websites on [Google's App Engine standard](https://cloud.google.com/appengine/docs/standard/python3/) platform with security features enabled by default. It is designed for both static websites which have no dynamic back-end code, and Python web applications.
+This template helps you build secure web applications on [Google App Engine](https://cloud.google.com/appengine/docs/standard/python3/) with security features enabled by default. Perfect for both static websites and full Python Flask applications.
 
-The scaffold consists of:
+**Security features included:**
+- ✅ **CSP (Content Security Policy)** headers via [Flask-Talisman](https://github.com/GoogleCloudPlatform/flask-talisman)
+- ✅ **CSRF Protection** via [Flask-SeaSurf](https://github.com/maxcountryman/flask-seasurf)
+- ✅ **HTTPS Enforcement** with automatic redirects
+- ✅ **IAP (Identity-Aware Proxy)** authentication helpers
+- ✅ **Secure request decorators** for cron jobs and admin-only routes
 
- * A [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template for starting a static website project.
- * Examples of App Engine websites: a static-only website; a mostly static website with back-end logic to redirect users depending on the Accept-Language header; a Flask application that uses CSP nonces, CSRF-protected forms, and more security features.
- * A Python library for creating a [Flask](https://flask.palletsprojects.com/) website with secure defaults. This uses the [Flask-SeaSurf](https://github.com/maxcountryman/flask-seasurf) library to enable [CSRF](https://developer.mozilla.org/en-US/docs/Glossary/CSRF) protection, and the [Flask-Talisman](https://github.com/GoogleCloudPlatform/flask-talisman) library to enable [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (Content Security Policy) headers and other security features.
+## What's Included
+
+This template provides:
+
+ * 📦 **Python Library** (`securescaffold`) - A [Flask](https://flask.palletsprojects.com/) factory with secure defaults
+ * 🎯 **Working Examples** - Four complete example applications demonstrating different use cases
+ * 🍪 **Cookiecutter Template** - Quick project generation for static sites
+ * ✅ **Testing Setup** - pytest configuration with nox for multi-version testing
+ * 🔄 **CI/CD Ready** - GitHub Actions workflows included
 
 
-## Using the website template
+## Getting Started
 
-Secure Scaffold provides a [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template. [Install the Cookiecutter command](https://cookiecutter.readthedocs.io/en/latest/), then create a project from the template - you will be prompted for a project name. Project names must start with a letter and use lower-case letters and numbers and dashes, for example "my-project-1":
+### Option 1: Use GitHub Template (Recommended)
 
-    cookiecutter https://github.com/google/gae-secure-scaffold-python3.git
+1. Click the **"Use this template"** button at the top of this repository
+2. Create your new repository
+3. Clone and start building!
 
-Cookiecutter will create a new folder with your project name. Inside the folder is a configuration for a static website, with instructions for deploying the website to App Engine.
+See **[TEMPLATE_SETUP.md](TEMPLATE_SETUP.md)** for complete setup instructions.
+
+### Option 2: Use Cookiecutter
+
+Install [Cookiecutter](https://github.com/cookiecutter/cookiecutter) and create a project from the template:
+
+```bash
+pip install cookiecutter
+cookiecutter gh:YOUR-ORG/flask-gae-starter
+```
+
+You'll be prompted for a project name (use lowercase letters, numbers, and dashes, e.g., "my-project-1").
 
 
-## Website examples
+## Examples
 
-We have included examples of websites that use the Secure Scaffold. We hope you find these useful when building your own websites!
+This repository includes four working examples to help you get started:
 
- * A static site - uses app.yaml to serve a home page and all assets from a directory, with HTTPS and secure headers.
- * A mostly-static site which redirects requests depending on the Accept-Language header - uses app.yaml to serve the static assets and configures a root page handler that redirects visitors to `/intl/<code>`.
- * A secure Flask application - uses securescaffold to create an application with secure defaults, and demonstrates how to customise the application and extend it for common uses.
+| Example | Description | Use Case |
+|---------|-------------|----------|
+| **[static-site](examples/static-site/)** | Pure static content served via app.yaml | Simple websites with no backend logic |
+| **[language-redirect](examples/language-redirect/)** | Redirect based on Accept-Language header | Internationalized sites |
+| **[python-app](examples/python-app/)** | Full Flask app with forms, templates, CSRF protection | Dynamic web applications |
+| **[service-account-scopes](examples/service-account-scopes/)** | Google Cloud API authentication | Apps using Google Cloud services |
+
+Each example includes:
+- ✅ Complete working code
+- ✅ Deployment configuration (`app.yaml`)
+- ✅ README with setup instructions
+- ✅ Security features enabled by default
 
 
 ## Using the secure scaffold Python library
@@ -76,7 +120,7 @@ You can customise your application by creating a Python file. Then set the envir
 And add the environment variable to `app.yaml`:
 
     # app.yaml
-    runtime: python37
+    runtime: python311
 
     handlers:
       - url: /.*

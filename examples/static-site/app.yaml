@@ -18,7 +18,7 @@
 # See the examples for how to configure projects with a dynamic back-end.
 # https://github.com/google/gae-secure-scaffold-python3
 
-runtime: python37
+runtime: python311
 
 handlers:
 
